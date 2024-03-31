@@ -2,7 +2,7 @@
 
 [**中文**](README.md) **|** [**English**]
 
-This is a mod that allows you to modify the colors of block outlines, fog, and sky. More customizable colors will be added in the future.
+This is a mod that allows you to modify block outline color, fog color, sky color, water color, and water fog color. More customizable colors will be added in the future.
 
 
 
