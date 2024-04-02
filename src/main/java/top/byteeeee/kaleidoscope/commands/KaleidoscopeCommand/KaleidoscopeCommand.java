@@ -23,8 +23,8 @@ package top.byteeeee.kaleidoscope.commands.KaleidoscopeCommand;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-
 import com.mojang.brigadier.arguments.StringArgumentType;
+
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 
@@ -40,7 +40,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("switch", BoolArgumentType.bool())
             .executes(
                 context -> {
-                    KaleidoscopeConfig.skyConfig.displaySwitch = context.getArgument("switch", Boolean.class);
+                    KaleidoscopeConfig.skyConfigData.displaySwitch = context.getArgument("switch", Boolean.class);
                     KaleidoscopeConfig.saveToConfig();
                     return 1;
                 }
@@ -48,7 +48,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("value", StringArgumentType.string())
             .executes(context -> {
                 String value = context.getArgument("value", String.class);
-                KaleidoscopeConfig.skyConfig.color = Integer.parseInt(value, 16);
+                KaleidoscopeConfig.skyConfigData.color = Integer.parseInt(value, 16);
                 KaleidoscopeConfig.saveToConfig();
                 return 1;
             })))
@@ -58,7 +58,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("switch", BoolArgumentType.bool())
             .executes(
                 context -> {
-                    KaleidoscopeConfig.fogConfig.displaySwitch = context.getArgument("switch", Boolean.class);
+                    KaleidoscopeConfig.fogConfigData.displaySwitch = context.getArgument("switch", Boolean.class);
                     KaleidoscopeConfig.saveToConfig();
                     return 1;
                 }
@@ -66,7 +66,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("value", StringArgumentType.string())
             .executes(context -> {
                 String value = context.getArgument("value", String.class);
-                KaleidoscopeConfig.fogConfig.color = Integer.parseInt(value, 16);
+                KaleidoscopeConfig.fogConfigData.color = Integer.parseInt(value, 16);
                 KaleidoscopeConfig.saveToConfig();
                 return 1;
             })))
@@ -76,7 +76,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("switch", BoolArgumentType.bool())
             .executes(
                 context -> {
-                    KaleidoscopeConfig.waterConfig.displaySwitch = context.getArgument("switch", Boolean.class);
+                    KaleidoscopeConfig.waterConfigData.displaySwitch = context.getArgument("switch", Boolean.class);
                     KaleidoscopeConfig.saveToConfig();
                     return 1;
                 }
@@ -84,7 +84,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("value", StringArgumentType.string())
             .executes(context -> {
                 String value = context.getArgument("value", String.class);
-                KaleidoscopeConfig.waterConfig.color = Integer.parseInt(value, 16);
+                KaleidoscopeConfig.waterConfigData.color = Integer.parseInt(value, 16);
                 KaleidoscopeConfig.saveToConfig();
                 return 1;
             })))
@@ -94,7 +94,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("switch", BoolArgumentType.bool())
             .executes(
                 context -> {
-                    KaleidoscopeConfig.waterFogConfig.displaySwitch = context.getArgument("switch", Boolean.class);
+                    KaleidoscopeConfig.waterFogConfigData.displaySwitch = context.getArgument("switch", Boolean.class);
                     KaleidoscopeConfig.saveToConfig();
                     return 1;
                 }
@@ -102,7 +102,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("value", StringArgumentType.string())
             .executes(context -> {
                 String value = context.getArgument("value", String.class);
-                KaleidoscopeConfig.waterFogConfig.color = Integer.parseInt(value, 16);
+                KaleidoscopeConfig.waterFogConfigData.color = Integer.parseInt(value, 16);
                 KaleidoscopeConfig.saveToConfig();
                 return 1;
             })))
@@ -112,7 +112,7 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("switch", BoolArgumentType.bool())
             .executes(
                 context -> {
-                    KaleidoscopeConfig.blockOutlineConfig.displaySwitch = context.getArgument("switch", Boolean.class);
+                    KaleidoscopeConfig.blockOutlineConfigData.displaySwitch = context.getArgument("switch", Boolean.class);
                     KaleidoscopeConfig.saveToConfig();
                     return 1;
                 }
@@ -122,10 +122,10 @@ public class KaleidoscopeCommand {
             .then(ClientCommandManager.argument("blue", IntegerArgumentType.integer())
             .then(ClientCommandManager.argument("alpha", IntegerArgumentType.integer())
             .executes(context -> {
-                KaleidoscopeConfig.blockOutlineConfig.red = context.getArgument("red", Integer.class);
-                KaleidoscopeConfig.blockOutlineConfig.green = context.getArgument("green", Integer.class);
-                KaleidoscopeConfig.blockOutlineConfig.blue = context.getArgument("blue", Integer.class);
-                KaleidoscopeConfig.blockOutlineConfig.alpha = context.getArgument("alpha", Integer.class);
+                KaleidoscopeConfig.blockOutlineConfigData.red = context.getArgument("red", Integer.class);
+                KaleidoscopeConfig.blockOutlineConfigData.green = context.getArgument("green", Integer.class);
+                KaleidoscopeConfig.blockOutlineConfigData.blue = context.getArgument("blue", Integer.class);
+                KaleidoscopeConfig.blockOutlineConfigData.alpha = context.getArgument("alpha", Integer.class);
                 KaleidoscopeConfig.saveToConfig();
                 return 1;
             }))))))

@@ -18,21 +18,21 @@
  * along with Kaleidoscope. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package top.byteeeee.kaleidoscope.config.fogColor;
+package top.byteeeee.kaleidoscope.config.waterColor;
 
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
-public class FogConfig {
+public class WaterConfigData {
     public Integer color = 4772300;
     public boolean displaySwitch = false;
 
     public void loadFromConfig(KaleidoscopeConfig.ConfigData config) {
-        color = config.fogConfig.color;
-        displaySwitch = config.fogConfig.displaySwitch;
+        color = config.waterConfigData.color;
+        displaySwitch = config.waterConfigData.displaySwitch;
     }
 
     public void saveToConfig(KaleidoscopeConfig.ConfigData config) {
-        config.fogConfig.color = color;
-        config.fogConfig.displaySwitch = displaySwitch;
+        config.waterConfigData.color = color;
+        config.waterConfigData.displaySwitch = displaySwitch;
     }
 }

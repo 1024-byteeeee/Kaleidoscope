@@ -26,11 +26,11 @@ import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 
 import top.byteeeee.kaleidoscope.KaleidoscopeClientMod;
-import top.byteeeee.kaleidoscope.config.skyColor.SkyConfig;
-import top.byteeeee.kaleidoscope.config.fogColor.FogConfig;
-import top.byteeeee.kaleidoscope.config.blockOutlineColor.BlockOutlineConfig;
-import top.byteeeee.kaleidoscope.config.waterColor.WaterConfig;
-import top.byteeeee.kaleidoscope.config.waterFogColor.WaterFogConfig;
+import top.byteeeee.kaleidoscope.config.skyColor.SkyConfigData;
+import top.byteeeee.kaleidoscope.config.fogColor.FogConfigData;
+import top.byteeeee.kaleidoscope.config.blockOutlineColor.BlockOutlineConfigData;
+import top.byteeeee.kaleidoscope.config.waterColor.WaterConfigData;
+import top.byteeeee.kaleidoscope.config.waterFogColor.WaterFogConfigData;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -41,22 +41,18 @@ public class KaleidoscopeConfig {
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("kaleidoscope");
     private static final String CONFIG_FILE = CONFIG_PATH.resolve("colors.json").toString();
 
-    public static SkyConfig skyConfig = new SkyConfig();
-    public static FogConfig fogConfig = new FogConfig();
-    public static WaterConfig waterConfig = new WaterConfig();
-    public static WaterFogConfig waterFogConfig = new WaterFogConfig();
-    public static BlockOutlineConfig blockOutlineConfig = new BlockOutlineConfig();
+    public static SkyConfigData skyConfigData = new SkyConfigData();
+    public static FogConfigData fogConfigData = new FogConfigData();
+    public static WaterConfigData waterConfigData = new WaterConfigData();
+    public static WaterFogConfigData waterFogConfigData = new WaterFogConfigData();
+    public static BlockOutlineConfigData blockOutlineConfigData = new BlockOutlineConfigData();
 
     public static void loadFromConfig() {
         createConfigPath();
         try (Reader reader = new FileReader(CONFIG_FILE)) {
             ConfigData config = gson.fromJson(reader, ConfigData.class);
             if (config != null) {
-                skyConfig.loadFromConfig(config);
-                fogConfig.loadFromConfig(config);
-                waterConfig.loadFromConfig(config);
-                waterFogConfig.loadFromConfig(config);
-                blockOutlineConfig.loadFromConfig(config);
+                loadConfig(config);
             }
         } catch (IOException e) {
             KaleidoscopeClientMod.LOGGER.warn("Failed to load configuration" + e);
@@ -66,11 +62,7 @@ public class KaleidoscopeConfig {
     public static void saveToConfig() {
         createConfigPath();
         ConfigData config = new ConfigData();
-        skyConfig.saveToConfig(config);
-        fogConfig.saveToConfig(config);
-        waterConfig.saveToConfig(config);
-        waterFogConfig.saveToConfig(config);
-        blockOutlineConfig.saveToConfig(config);
+        saveConfig(config);
         try (Writer writer = new FileWriter(CONFIG_FILE)) {
             gson.toJson(config, writer);
         } catch (IOException e) {
@@ -89,11 +81,27 @@ public class KaleidoscopeConfig {
         }
     }
 
+    private static void loadConfig(ConfigData config) {
+        skyConfigData.loadFromConfig(config);
+        fogConfigData.loadFromConfig(config);
+        waterConfigData.loadFromConfig(config);
+        waterFogConfigData.loadFromConfig(config);
+        blockOutlineConfigData.loadFromConfig(config);
+    }
+
+    private static void saveConfig(ConfigData config) {
+        skyConfigData.saveToConfig(config);
+        fogConfigData.saveToConfig(config);
+        waterConfigData.saveToConfig(config);
+        waterFogConfigData.saveToConfig(config);
+        blockOutlineConfigData.saveToConfig(config);
+    }
+
     public static class ConfigData {
-        public SkyConfig skyConfig = new SkyConfig();
-        public FogConfig fogConfig = new FogConfig();
-        public WaterConfig waterConfig = new WaterConfig();
-        public WaterFogConfig waterFogConfig = new WaterFogConfig();
-        public BlockOutlineConfig blockOutlineConfig = new BlockOutlineConfig();
+        public SkyConfigData skyConfigData = new SkyConfigData();
+        public FogConfigData fogConfigData = new FogConfigData();
+        public WaterConfigData waterConfigData = new WaterConfigData();
+        public WaterFogConfigData waterFogConfigData = new WaterFogConfigData();
+        public BlockOutlineConfigData blockOutlineConfigData = new BlockOutlineConfigData();
     }
 }

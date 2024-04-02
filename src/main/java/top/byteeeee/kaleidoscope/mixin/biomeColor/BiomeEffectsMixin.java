@@ -37,21 +37,21 @@ import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 public abstract class BiomeEffectsMixin {
     @ModifyReturnValue(method = "getSkyColor", at = @At("RETURN"))
     private int getSkyColor(int original) {
-        return KaleidoscopeConfig.skyConfig.displaySwitch ? KaleidoscopeConfig.skyConfig.color : original;
+        return KaleidoscopeConfig.skyConfigData.displaySwitch ? KaleidoscopeConfig.skyConfigData.color : original;
     }
 
     @ModifyReturnValue(method = "getFogColor", at = @At("RETURN"))
     private int getFogColor(int original) {
-        return KaleidoscopeConfig.fogConfig.displaySwitch ? KaleidoscopeConfig.fogConfig.color : original;
+        return KaleidoscopeConfig.fogConfigData.displaySwitch ? KaleidoscopeConfig.fogConfigData.color : original;
     }
 
     @ModifyReturnValue(method = "getWaterColor", at = @At("RETURN"))
     private int getWaterColor(int original) {
-        return KaleidoscopeConfig.waterConfig.displaySwitch ? KaleidoscopeConfig.waterConfig.color : original;
+        return KaleidoscopeConfig.waterConfigData.displaySwitch ? KaleidoscopeConfig.waterConfigData.color : original;
     }
 
     @ModifyReturnValue(method = "getWaterFogColor", at = @At("RETURN"))
     private int getWaterFogColor(int original) {
-        return KaleidoscopeConfig.waterFogConfig.displaySwitch ? KaleidoscopeConfig.waterFogConfig.color : original;
+        return KaleidoscopeConfig.waterFogConfigData.displaySwitch ? KaleidoscopeConfig.waterFogConfigData.color : original;
     }
 }

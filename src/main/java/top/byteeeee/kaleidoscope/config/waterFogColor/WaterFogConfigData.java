@@ -22,17 +22,17 @@ package top.byteeeee.kaleidoscope.config.waterFogColor;
 
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
-public class WaterFogConfig {
+public class WaterFogConfigData {
     public Integer color = 4772300;
     public boolean displaySwitch = false;
 
     public void loadFromConfig(KaleidoscopeConfig.ConfigData config) {
-        color = config.waterFogConfig.color;
-        displaySwitch = config.waterFogConfig.displaySwitch;
+        color = config.waterFogConfigData.color;
+        displaySwitch = config.waterFogConfigData.displaySwitch;
     }
 
     public void saveToConfig(KaleidoscopeConfig.ConfigData config) {
-        config.waterFogConfig.color = color;
-        config.waterFogConfig.displaySwitch = displaySwitch;
+        config.waterFogConfigData.color = color;
+        config.waterFogConfigData.displaySwitch = displaySwitch;
     }
 }

@@ -18,30 +18,21 @@
  * along with Kaleidoscope. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package top.byteeeee.kaleidoscope.config.blockOutlineColor;
+package top.byteeeee.kaleidoscope.config.fogColor;
 
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
-public class BlockOutlineConfig {
-    public int red = 0;
-    public int green = 0;
-    public int blue = 0;
-    public int alpha = 102;
+public class FogConfigData {
+    public Integer color = 4772300;
     public boolean displaySwitch = false;
 
     public void loadFromConfig(KaleidoscopeConfig.ConfigData config) {
-        red = config.blockOutlineConfig.red;
-        green = config.blockOutlineConfig.green;
-        blue = config.blockOutlineConfig.blue;
-        alpha = config.blockOutlineConfig.alpha;
-        displaySwitch = config.blockOutlineConfig.displaySwitch;
+        color = config.fogConfigData.color;
+        displaySwitch = config.fogConfigData.displaySwitch;
     }
 
     public void saveToConfig(KaleidoscopeConfig.ConfigData config) {
-        config.blockOutlineConfig.red = red;
-        config.blockOutlineConfig.green = green;
-        config.blockOutlineConfig.blue = blue;
-        config.blockOutlineConfig.alpha = alpha;
-        config.blockOutlineConfig.displaySwitch = displaySwitch;
+        config.fogConfigData.color = color;
+        config.fogConfigData.displaySwitch = displaySwitch;
     }
 }

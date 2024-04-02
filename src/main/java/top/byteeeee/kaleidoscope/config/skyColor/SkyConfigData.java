@@ -22,17 +22,17 @@ package top.byteeeee.kaleidoscope.config.skyColor;
 
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
-public class SkyConfig {
+public class SkyConfigData {
     public Integer color = 4772300;
     public boolean displaySwitch = false;
 
     public void loadFromConfig(KaleidoscopeConfig.ConfigData config) {
-        color = config.skyConfig.color;
-        displaySwitch = config.skyConfig.displaySwitch;
+        color = config.skyConfigData.color;
+        displaySwitch = config.skyConfigData.displaySwitch;
     }
 
     public void saveToConfig(KaleidoscopeConfig.ConfigData config) {
-        config.skyConfig.color = color;
-        config.skyConfig.displaySwitch = displaySwitch;
+        config.skyConfigData.color = color;
+        config.skyConfigData.displaySwitch = displaySwitch;
     }
 }

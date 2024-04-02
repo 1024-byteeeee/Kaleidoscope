@@ -56,11 +56,11 @@ public abstract class WorldRenderMixin {
 
     @Inject(method = "drawBlockOutline", at = @At("HEAD"), cancellable = true)
     private void drawBlockOutline (MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (KaleidoscopeConfig.blockOutlineConfig.displaySwitch) {
-            float R = KaleidoscopeConfig.blockOutlineConfig.red / 255.0F;
-            float G = KaleidoscopeConfig.blockOutlineConfig.green / 255.0F;
-            float B = KaleidoscopeConfig.blockOutlineConfig.blue / 255.0F;
-            float alpha = KaleidoscopeConfig.blockOutlineConfig.alpha / 255.0F;
+        if (KaleidoscopeConfig.blockOutlineConfigData.displaySwitch) {
+            float R = KaleidoscopeConfig.blockOutlineConfigData.red / 255.0F;
+            float G = KaleidoscopeConfig.blockOutlineConfigData.green / 255.0F;
+            float B = KaleidoscopeConfig.blockOutlineConfigData.blue / 255.0F;
+            float alpha = KaleidoscopeConfig.blockOutlineConfigData.alpha / 255.0F;
             drawShapeOutline(
                 matrices, vertexConsumer, state.getOutlineShape(this.world, pos, ShapeContext.of(entity)),
                 (double)pos.getX() - cameraX,

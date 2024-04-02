@@ -18,21 +18,30 @@
  * along with Kaleidoscope. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package top.byteeeee.kaleidoscope.config.waterColor;
+package top.byteeeee.kaleidoscope.config.blockOutlineColor;
 
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
-public class WaterConfig {
-    public Integer color = 4772300;
+public class BlockOutlineConfigData {
+    public int red = 0;
+    public int green = 0;
+    public int blue = 0;
+    public int alpha = 102;
     public boolean displaySwitch = false;
 
     public void loadFromConfig(KaleidoscopeConfig.ConfigData config) {
-        color = config.skyConfig.color;
-        displaySwitch = config.waterConfig.displaySwitch;
+        red = config.blockOutlineConfigData.red;
+        green = config.blockOutlineConfigData.green;
+        blue = config.blockOutlineConfigData.blue;
+        alpha = config.blockOutlineConfigData.alpha;
+        displaySwitch = config.blockOutlineConfigData.displaySwitch;
     }
 
     public void saveToConfig(KaleidoscopeConfig.ConfigData config) {
-        config.waterConfig.color = color;
-        config.waterConfig.displaySwitch = displaySwitch;
+        config.blockOutlineConfigData.red = red;
+        config.blockOutlineConfigData.green = green;
+        config.blockOutlineConfigData.blue = blue;
+        config.blockOutlineConfigData.alpha = alpha;
+        config.blockOutlineConfigData.displaySwitch = displaySwitch;
     }
 }
