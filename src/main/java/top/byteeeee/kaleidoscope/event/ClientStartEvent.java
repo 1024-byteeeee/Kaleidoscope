@@ -21,6 +21,7 @@
 package top.byteeeee.kaleidoscope.event;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
 public class ClientStartEvent {

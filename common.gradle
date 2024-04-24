@@ -62,18 +62,17 @@ remapJar {
 	remapperIsolation = true
 }
 
-if (mcVersion >= 11800) {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+JavaVersion JAVA_VERSION
+if (mcVersion >= 12005) {
+	JAVA_VERSION = JavaVersion.VERSION_21
+} else if (mcVersion >= 11800) {
+	JAVA_VERSION = JavaVersion.VERSION_17
+} else if (mcVersion >= 11700) {
+	JAVA_VERSION = JavaVersion.VERSION_16
+} else {
+	JAVA_VERSION = JavaVersion.VERSION_1_8
 }
-else if (mcVersion >= 11700) {
-	sourceCompatibility = JavaVersion.VERSION_16
-	targetCompatibility = JavaVersion.VERSION_16
-}
-else {
-	sourceCompatibility = JavaVersion.VERSION_1_8
-	targetCompatibility = JavaVersion.VERSION_1_8
-}
+JavaVersion MIXIN_COMPATIBILITY_LEVEL = JAVA_VERSION
 
 String versionSuffix = ''
 // detect github action environment variables
@@ -100,6 +99,12 @@ processResources {
 			"fabric_api_dependency": project.fabric_api_dependency,
 		]
 		expand valueMap
+	}
+
+	filesMatching("kaleidoscope.mixins.json") {
+		filter {
+			text -> text.replace("/*JAVA_VERSION*/", "JAVA_${MIXIN_COMPATIBILITY_LEVEL.ordinal() + 1}")
+		}
 	}
 }
 

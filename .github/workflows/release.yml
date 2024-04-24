@@ -16,7 +16,6 @@ on:
         type: string
         required: true
 
-
 jobs:
   show_action_parameters:
     runs-on: ubuntu-latest
@@ -50,10 +49,10 @@ jobs:
       matrix: ${{ fromJson(needs.matrix_prep.outputs.matrix) }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: build-artifacts
@@ -109,8 +108,8 @@ jobs:
           modrinth-id: vBxRFGLR
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
 
-          # curseforge-id: _INSERT_CURSEFORGE_MOD_ID_HERE_
-          # curseforge-token: ${{ secrets.CF_API_TOKEN }}
+          # curseforge-id: ---
+          # curseforge-token: ${{ secrets.CURSEFORGE_API_TOKEN }}
 
           github-tag: ${{ steps.release_info.outputs.tag_name }}
           github-token: ${{ secrets.GITHUB_TOKEN }}

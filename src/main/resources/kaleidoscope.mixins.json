@@ -1,10 +1,11 @@
 {
   "required": true,
-  "minVersion": "0.8",
+  "minVersion": "0.8.5",
   "package": "top.byteeeee.kaleidoscope.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "/*JAVA_VERSION*/",
   "client": [
     "biomeColor.BiomeEffectsMixin",
+    "blockOutlineColor.WorldRendererInvoker",
     "blockOutlineColor.WorldRenderMixin"
   ],
   "injectors": {

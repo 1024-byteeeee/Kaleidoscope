@@ -11,23 +11,32 @@
 
 # 指令
 
-- /kaleidoscope sky [value]
+- **/kaleidoscope sky [value]**
   - 用于修改天空颜色，使用16位RGB代码。
-- /kaleidoscope sky [true/false]
+  
+- **/kaleidoscope sky [true/false]**
   - 用于开启/关闭修改天空颜色。
-- /kaleidoscope fog [value]
+  
+- **/kaleidoscope fog [value]**
   - 用于修改迷雾颜色，使用16位RGB代码。
-- /kaleidoscope fog [true/false]
+  
+- **/kaleidoscope fog [true/false]**
   - 用于开启/关闭修改迷雾颜色。
-- /kaleidoscope water [value]
+  
+- **/kaleidoscope water [value]**
   - 用于修改水体颜色，使用16位RGB代码。
-- /kaleidoscope water [true/false]
+  
+- **/kaleidoscope water [true/false]**
   - 用于开启/关闭修改水体颜色。
-- /kaleidoscope waterFog [value]
+  
+- **/kaleidoscope waterFog [value]**
   - 用于修改水下迷雾颜色，使用16位RGB代码。
-- /kaleidoscope waterFog [true/false]
+  
+- **/kaleidoscope waterFog [true/false]**
   - 用于开启/关闭修改水下迷雾颜色。
-- /kaleidoscope blockOutline [red] [green] [blue] [alpha]
+  
+- **/kaleidoscope blockOutline [red] [green] [blue] [alpha]**
   - 用于修改方块轮廓的RGB颜色以及其透明度。
-- /kaleidoscope blockOutline [true/false]
+
+- **/kaleidoscope blockOutline [true/false]**
   - 用于开启/关闭修改方块轮廓颜色。
