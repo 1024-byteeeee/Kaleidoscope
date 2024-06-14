@@ -28,7 +28,15 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+import net.minecraft.client.network.ClientPlayerEntity;
+
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
+import top.byteeeee.kaleidoscope.utils.MessageTextEventUtils.ClickEventUtil;
+import top.byteeeee.kaleidoscope.utils.MessageTextEventUtils.HoverEventUtil;
+import top.byteeeee.kaleidoscope.utils.Messenger;
 
 public class KaleidoscopeCommand {
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
@@ -129,6 +137,26 @@ public class KaleidoscopeCommand {
                 KaleidoscopeConfig.saveToConfig();
                 return 1;
             }))))))
+
+            // help
+            .then(ClientCommandManager.literal("help")
+            .executes(context -> help(context.getSource().getPlayer())))
         );
+    }
+
+    private static int help(ClientPlayerEntity player) {
+        final String commandHelpDoc = Messenger.tr("kaleidoscope.command.kaleidoscope.help.doc").getString();
+        player.sendMessage(Messenger.s(commandHelpDoc).formatted(Formatting.LIGHT_PURPLE).append(urlButton()), false);
+        return 1;
+    }
+
+    private static Text urlButton() {
+        final String commandHelpUrl = Messenger.tr("kaleidoscope.command.kaleidoscope.help.url").getString();
+        return
+            Messenger.s(commandHelpUrl).setStyle(
+                Style.EMPTY.withColor(Formatting.LIGHT_PURPLE).withUnderline(true)
+                .withClickEvent(ClickEventUtil.event(ClickEventUtil.OPEN_URL, commandHelpUrl))
+                .withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, Messenger.s("GOTO").formatted(Formatting.YELLOW)))
+            );
     }
 }
