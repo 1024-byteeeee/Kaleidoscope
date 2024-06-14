@@ -5,6 +5,7 @@
   "compatibilityLevel": "/*JAVA_VERSION*/",
   "client": [
     "biomeColor.BiomeEffectsMixin",
+    "blockOutlineColor.WorldRendererAccessor",
     "blockOutlineColor.WorldRenderMixin"
   ],
   "injectors": {

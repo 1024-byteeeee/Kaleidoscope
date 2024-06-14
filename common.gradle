@@ -56,6 +56,8 @@ loom {
             ideConfigGenerated false
         }
     }
+
+	accessWidenerPath = file("kaleidoscope.accesswidener")
 }
 
 remapJar {

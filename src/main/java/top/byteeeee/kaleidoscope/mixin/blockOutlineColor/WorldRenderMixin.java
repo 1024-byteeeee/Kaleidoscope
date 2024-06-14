@@ -28,15 +28,10 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-
-import org.jetbrains.annotations.Nullable;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -45,15 +40,7 @@ import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
 @Environment(EnvType.CLIENT)
 @Mixin(WorldRenderer.class)
-public abstract class WorldRenderMixin {
-
-    @Shadow
-    @Nullable
-    private ClientWorld world;
-
-    @Shadow
-    private static void drawShapeOutline(MatrixStack matrices, VertexConsumer vertexConsumer, VoxelShape voxelShape, double d, double e, double f, float g, float h, float i, float j) {}
-
+public abstract class WorldRenderMixin implements WorldRendererAccessor{
     @Inject(method = "drawBlockOutline", at = @At("HEAD"), cancellable = true)
     private void drawBlockOutline (MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (KaleidoscopeConfig.blockOutlineConfigData.displaySwitch) {
@@ -61,8 +48,8 @@ public abstract class WorldRenderMixin {
             float G = KaleidoscopeConfig.blockOutlineConfigData.green / 255.0F;
             float B = KaleidoscopeConfig.blockOutlineConfigData.blue / 255.0F;
             float alpha = KaleidoscopeConfig.blockOutlineConfigData.alpha / 255.0F;
-            drawShapeOutline(
-                matrices, vertexConsumer, state.getOutlineShape(this.world, pos, ShapeContext.of(entity)),
+            WorldRenderer.drawShapeOutline(
+                matrices, vertexConsumer, state.getOutlineShape(this.getWorld(), pos, ShapeContext.of(entity)),
                 (double)pos.getX() - cameraX,
                 (double)pos.getY() - cameraY,
                 (double)pos.getZ() - cameraZ,

@@ -40,3 +40,6 @@
 
 - **/kaleidoscope blockOutline [true/false]**
   - 用于开启/关闭修改方块轮廓颜色。
+
+- **/kaleidoscope help**
+  - 查看指令帮助。
