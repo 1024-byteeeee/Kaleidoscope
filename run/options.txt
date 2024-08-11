@@ -1,4 +1,4 @@
-version:3700
+version:3463
 autoJump:false
 operatorItemsTab:false
 autoSuggestions:true
@@ -21,7 +21,6 @@ toggleCrouch:false
 toggleSprint:false
 darkMojangStudiosBackground:false
 hideLightningFlashes:false
-hideSplashTexts:false
 mouseSensitivity:0.5
 fov:0.0
 screenEffectScale:1.0
@@ -31,7 +30,6 @@ glintSpeed:0.5
 glintStrength:0.75
 damageTiltStrength:1.0
 highContrast:false
-narratorHotkey:true
 gamma:0.5
 renderDistance:12
 simulationDistance:12
@@ -47,7 +45,7 @@ renderClouds:"false"
 resourcePacks:["fabric"]
 incompatibleResourcePacks:[]
 lastServer:
-lang:zh_cn
+lang:en_us
 soundDevice:""
 chatVisibility:0
 chatOpacity:1.0
