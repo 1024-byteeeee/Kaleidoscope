@@ -24,6 +24,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import net.minecraft.text.BaseText;
+
 import top.byteeeee.kaleidoscope.utils.compat.MessengerCompatFactory;
 
 @Environment(EnvType.CLIENT)

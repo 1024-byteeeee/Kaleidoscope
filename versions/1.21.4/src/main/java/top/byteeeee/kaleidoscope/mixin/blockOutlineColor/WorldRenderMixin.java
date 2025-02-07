@@ -32,50 +32,44 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.shape.VoxelShape;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 import top.byteeeee.annotationtoolbox.annotation.GameVersion;
 
 import top.byteeeee.kaleidoscope.config.KaleidoscopeConfig;
 
-@GameVersion(version = "Minecraft < 1.21.4")
+@GameVersion(version = "Minecraft >= 1.21.4")
 @Environment(EnvType.CLIENT)
 @Mixin(WorldRenderer.class)
-public abstract class WorldRenderMixin implements WorldRendererAccessor {
+public abstract class WorldRenderMixin {
     @WrapOperation(
-        method = "render",
+        method = "renderTargetBlockOutline",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/client/render/WorldRenderer;drawBlockOutline(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Lnet/minecraft/entity/Entity;DDDLnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V"
+            target = "Lnet/minecraft/client/render/WorldRenderer;drawBlockOutline(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Lnet/minecraft/entity/Entity;DDDLnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)V"
         )
     )
-    private void renderBlockOutline(
-        WorldRenderer worldRenderer, MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity,
-        double cameraX, double cameraY, double cameraZ,
-        BlockPos pos, BlockState state, Operation<Void> original
+    private void renderBlockOutlineWrapper(
+            WorldRenderer worldRenderer, MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity,
+            double cameraX, double cameraY, double cameraZ,
+            BlockPos pos, BlockState state, int originalColor, Operation<Void> original
     ) {
         if (KaleidoscopeConfig.blockOutlineConfigData.displaySwitch) {
-            float red = KaleidoscopeConfig.blockOutlineConfigData.red / 255.0F;
-            float green = KaleidoscopeConfig.blockOutlineConfigData.green / 255.0F;
-            float blue = KaleidoscopeConfig.blockOutlineConfigData.blue / 255.0F;
-            float alpha = KaleidoscopeConfig.blockOutlineConfigData.alpha / 255.0F;
-            double X = pos.getX() - cameraX;
-            double Y = pos.getY() - cameraY;
-            double Z = pos.getZ() - cameraZ;
-            VoxelShape shape = state.getOutlineShape(this.getWorld(), pos, ShapeContext.of(entity));
-            drawOutline(matrices, vertexConsumer, shape, X, Y, Z, red, green, blue, alpha);
+            int customColor = ColorHelper.getArgb(
+                KaleidoscopeConfig.blockOutlineConfigData.alpha,
+                KaleidoscopeConfig.blockOutlineConfigData.red,
+                KaleidoscopeConfig.blockOutlineConfigData.green,
+                KaleidoscopeConfig.blockOutlineConfigData.blue
+            );
+            VoxelShape shape = state.getOutlineShape(((WorldRendererAccessor) this).getWorld(), pos, ShapeContext.of(entity));
+            VertexRendering.drawOutline(matrices, vertexConsumer, shape, pos.getX() - cameraX, pos.getY() - cameraY, pos.getZ() - cameraZ, customColor);
         } else {
-            original.call(worldRenderer, matrices, vertexConsumer, entity, cameraX, cameraY, cameraZ, pos, state);
+            original.call(worldRenderer, matrices, vertexConsumer, entity, cameraX, cameraY, cameraZ, pos, state, originalColor);
         }
-    }
-
-    @Unique
-    private static void drawOutline(MatrixStack matrices, VertexConsumer vertexConsumer, VoxelShape shape, double X, double Y, double Z, float red, float green, float blue, float alpha) {
-        WorldRenderer.drawShapeOutline(matrices, vertexConsumer, shape, X, Y, Z, red, green, blue, alpha);
     }
 }
 
